@@ -4,7 +4,7 @@
   "description": "Kisalu Back-End",
   "scripts": {
     "dev": "tsnd --respawn --ignore-watch node_modules ./src/apps/http",
-    "start": "ts-node ./src/apps/http",
+    "start": "node ./dist/apps/http",
     "build":"npm install && npx prisma db push"
   },
   "author": "3R",
