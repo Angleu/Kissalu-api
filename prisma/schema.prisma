@@ -1,0 +1,141 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Estados {
+  PENDENTE
+  FINALIZADA
+  ATIVA
+  CANCELADA
+}
+
+model Endereco {
+  id          String  @id @default(uuid())
+  provincia   String
+  distrito    String?
+  bairro      String
+  municipio   String
+  complemento String?
+
+  cliente   Cliente[]
+  prestador Prestador[]
+}
+
+model Cliente {
+  id         String      @id @default(uuid())
+  bi         String      @unique
+  nome       String
+  dataNasc   DateTime
+  email      String      @unique
+  telefone   String
+  password   String
+  imageUrl   String?
+  criadoEm   DateTime    @default(now())
+  atividades Atividade[]
+  loginInfo  LoginInfo[]
+
+  moradaId String
+  morada   Endereco @relation(fields: [moradaId], references: [id])
+
+  @@map("clientes")
+}
+
+model Prestador {
+  id         String               @id @default(uuid())
+  bi         String               @unique
+  nome       String
+  dataNasc   DateTime
+  email      String               @unique
+  telefone   String
+  password   String
+  estado     String               @default("DISPONIVEL")
+  iban       String               @unique
+  rate       Float                @default(0)
+  imageUrl   String?
+  descricao  String?              @db.Text
+  criadoEm   DateTime             @default(now())
+  verificado Boolean              @default(false)
+  atividades Atividade[]
+  categorias PrestadorCategoria[]
+  loginInfo  LoginInfo[]
+
+  moradaId String
+  morada   Endereco @relation(fields: [moradaId], references: [id])
+
+  portifolio Post[]
+
+  @@map("prestadores")
+}
+
+model Atividade {
+  id             String    @id @default(uuid())
+  dataCriado     DateTime  @default(now())
+  dataFinalizado DateTime?
+  valorAssociado Float?
+  numRef         Int?
+  estado         Estados   @default(PENDENTE)
+  prestadorId    String
+  clienteId      String
+  categoriaId    String
+  descricao      String?
+  avaliacao      Int?
+  localizacao    String?
+  feedback       String?
+  Cliente        Cliente   @relation(fields: [clienteId], references: [id])
+  Prestador      Prestador @relation(fields: [prestadorId], references: [id])
+  Categoria      Categoria @relation(fields: [categoriaId], references: [id])
+
+  @@map("atividades")
+}
+
+model Categoria {
+  id          String               @id @default(uuid())
+  titulo      String
+  imageUrl    String
+  Atividade   Atividade[]
+  prestadores PrestadorCategoria[]
+  posts       Post[]
+
+  @@map("categorias")
+}
+
+model PrestadorCategoria {
+  idPrestador String
+  idCategoria String
+  prestador   Prestador @relation(fields: [idPrestador], references: [id])
+  categoria   Categoria @relation(fields: [idCategoria], references: [id])
+
+  @@id([idPrestador, idCategoria])
+}
+
+model LoginInfo {
+  id          String     @id @default(uuid())
+  token       String     @unique
+  deviceId    String
+  device      Json
+  createdAt   DateTime   @default(now())
+  Cliente     Cliente?   @relation(fields: [clienteId], references: [id])
+  clienteId   String?
+  Prestador   Prestador? @relation(fields: [prestadorId], references: [id])
+  prestadorId String?
+
+  @@map("login_info")
+}
+
+model Post {
+  id          String     @id @default(uuid())
+  descricao   String
+  mediaUrl    String
+  categoria   Categoria  @relation(fields: [categoriaId], references: [id])
+  categoriaId String
+  Prestador   Prestador? @relation(fields: [prestadorId], references: [id])
+  prestadorId String?
+}
