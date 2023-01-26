@@ -10,7 +10,7 @@
     "dev": "tsnd --respawn --ignore-watch node_modules ./src/apps/http",
     "data-base": "prisma studio",
     "start": "ts-node ./src/apps/http",
-    "deploy":" npm install && npx prisma db push",
+    "build":" npm install && npx prisma db push",
     "test": "jest"
   },
   "author": "3R",
