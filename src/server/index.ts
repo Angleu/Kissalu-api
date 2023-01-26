@@ -7,7 +7,7 @@ import webSocketApp from "../apps/websocket";
 import express from "express";
 
 dotenv.config();
-const app = express();
+// const app = express();
 // initMongoDB();
 
 // const httpServer = http.createServer(app);
@@ -18,4 +18,4 @@ const app = express();
 //   log.info("Server is running");
 // });
 
-app.listen(8080, () => console.log("Server is running 8080"));
+// app.listen(8080, () => console.log("Server is running 8080"));
