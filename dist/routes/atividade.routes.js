@@ -13,4 +13,5 @@ exports.atividadeRoutes = atividadeRoutes;
 atividadeRoutes.get("/:id/docPDF", ensureAuthenticated_1.ensureAuthenticated, checkAuthenticatedToken_1.default, atividade_controllers_1.gerarDocumentoPDF);
 atividadeRoutes.get("/:id/doc", atividade_controllers_1.verDocumento);
 atividadeRoutes.put("/:id/:rate", ensureAuthenticated_1.ensureAuthenticated, checkAuthenticatedToken_1.default, atividade_controllers_1.avaliarPerformance);
+atividadeRoutes.post("/", atividade_controllers_1.handleCriarActividade);
 //# sourceMappingURL=atividade.routes.js.map
