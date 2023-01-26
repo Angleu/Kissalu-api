@@ -3,6 +3,7 @@ import {
   avaliarPerformance,
   gerarDocumentoPDF,
   verDocumento,
+  handleCriarActividade,
 } from "../controllers/atividade.controllers";
 import checkAuthenticatedToken from "../middleware/checkAuthenticatedToken";
 import { ensureAuthenticated } from "../middleware/ensureAuthenticated";
@@ -22,5 +23,6 @@ atividadeRoutes.put(
   checkAuthenticatedToken,
   avaliarPerformance
 );
+atividadeRoutes.post("/", handleCriarActividade);
 
 export { atividadeRoutes };
