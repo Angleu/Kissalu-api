@@ -10,12 +10,12 @@ dotenv.config();
 const app = express();
 // initMongoDB();
 
-const httpServer = http.createServer(app);
+// const httpServer = http.createServer(app);
 
-webSocketApp(httpServer);
+// webSocketApp(httpServer);
 
-httpServer.listen(process.env.PORT, () => {
-  log.info("Server is running");
-});
+// httpServer.listen(process.env.PORT, () => {
+//   log.info("Server is running");
+// });
 
-// app.listen(8080, () => console.log("Server is running 8080"));
+app.listen(8080, () => console.log("Server is running 8080"));
