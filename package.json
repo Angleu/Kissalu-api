@@ -2,16 +2,10 @@
   "name": "kisalu-api",
   "version": "1.0.0",
   "description": "Kisalu Back-End",
-  "engines": {
-    "node": "16.14.2"
-  },
   "scripts": {
-    "migrate-dev": "prisma migrate dev",
     "dev": "tsnd --respawn --ignore-watch node_modules ./src/apps/http",
-    "data-base": "prisma studio",
     "start": "ts-node ./src/apps/http",
-    "build":" npm install && npx prisma db push",
-    "test": "jest"
+    "build":"npm install && npx prisma db push"
   },
   "author": "3R",
   "license": "ISC",
