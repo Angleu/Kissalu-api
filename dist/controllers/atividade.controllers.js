@@ -8,7 +8,7 @@ const gerarDocumento_1 = require("../services/atividade/gerarDocumento");
 const html_pdf_1 = __importDefault(require("html-pdf"));
 const log_1 = require("../libs/log");
 const rateAtividade_1 = require("../services/atividade/rateAtividade");
-const criarAtividade_1 = require("../services/atividade/criarAtividade");
+const newCriarActividade_1 = require("../services/atividade/newCriarActividade");
 const gerarDocumentoPDF = async (req, res) => {
     const response = await (0, gerarDocumento_1.gerarDocumentoService)(req.params.id);
     if (response) {
@@ -48,7 +48,8 @@ const avaliarPerformance = async (req, res) => {
 };
 exports.avaliarPerformance = avaliarPerformance;
 const handleCriarActividade = async (req, res) => {
-    const response = await (0, criarAtividade_1.criarAtividadeService)(req.body.actividade);
+    const { clienteId, categoriaId, prestadorId, descricao } = req.body;
+    const response = await (0, newCriarActividade_1.newCriarActividade)(clienteId, categoriaId, prestadorId, descricao);
     if (response) {
         res.status(200).send(response);
     }

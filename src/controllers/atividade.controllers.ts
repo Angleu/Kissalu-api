@@ -4,6 +4,7 @@ import pdf from "html-pdf";
 import { log } from "../libs/log";
 import { rateAtividade } from "../services/atividade/rateAtividade";
 import { criarAtividadeService } from "../services/atividade/criarAtividade";
+import { newCriarActividade } from "../services/atividade/newCriarActividade";
 
 export const gerarDocumentoPDF = async (req: Request, res: Response) => {
   const response = await gerarDocumentoService(req.params.id);
@@ -44,7 +45,13 @@ export const avaliarPerformance = async (req: Request, res: Response) => {
 };
 
 export const handleCriarActividade = async (req: Request, res: Response) => {
-  const response = await criarAtividadeService(req.body.actividade);
+  const { clienteId, categoriaId, prestadorId, descricao } = req.body;
+  const response = await newCriarActividade(
+    clienteId,
+    categoriaId,
+    prestadorId,
+    descricao
+  );
 
   if (response) {
     res.status(200).send(response);

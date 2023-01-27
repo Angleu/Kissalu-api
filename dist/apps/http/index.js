@@ -16,6 +16,7 @@ const swagger_json_1 = __importDefault(require("../../libs/configs/swagger.json"
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 8080;
+app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use("/api/doc", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_json_1.default));
 app.use("/cliente", cliente_routes_1.clienteRoutes);
