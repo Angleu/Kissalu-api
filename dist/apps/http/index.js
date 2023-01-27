@@ -12,7 +12,7 @@ const cors_1 = __importDefault(require("cors"));
 const atividade_routes_1 = require("../../routes/atividade.routes");
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_json_1 = __importDefault(require("../../libs/configs/swagger.json"));
-const chat_routes_1 = require("../../routes/chat.routes");
+// import { chatRoutes } from "../../routes/chat.routes";
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 8080;
@@ -22,7 +22,7 @@ app.use("/cliente", cliente_routes_1.clienteRoutes);
 app.use("/prestador", prestador_routes_1.prestadorRoutes);
 app.use("/categoria", categoria_routes_1.categoriaRoutes);
 app.use("/atividade", atividade_routes_1.atividadeRoutes);
-app.use("/chat", chat_routes_1.chatRoutes);
+// app.use("/chat", chatRoutes);
 app.listen(PORT, () => console.log("server listening on port ", PORT));
 // export default app;
 //# sourceMappingURL=index.js.map

@@ -8,6 +8,7 @@ const db_1 = __importDefault(require("../../libs/configs/db"));
 const log_1 = require("../../libs/log");
 async function criarAtividadeService(atividade) {
     try {
+        console.log(atividade);
         const dbResponse = await db_1.default.atividade.create({
             data: {
                 Cliente: {

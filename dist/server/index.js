@@ -4,14 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
-const express_1 = __importDefault(require("express"));
 dotenv_1.default.config();
-const app = (0, express_1.default)();
+// const app = express();
 // initMongoDB();
 // const httpServer = http.createServer(app);
 // webSocketApp(httpServer);
 // httpServer.listen(process.env.PORT, () => {
 //   log.info("Server is running");
 // });
-app.listen(8080, () => console.log("Server is running 8080"));
+// app.listen(8080, () => console.log("Server is running 8080"));
 //# sourceMappingURL=index.js.map

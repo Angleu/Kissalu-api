@@ -9,6 +9,7 @@ export async function criarAtividadeService(
   >
 ) {
   try {
+    console.log(atividade);
     const dbResponse = await db.atividade.create({
       data: {
         Cliente: {
